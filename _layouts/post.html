@@ -1,15 +1,82 @@
----
-layout: default
----
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]--> 
+{% include head.html %}
+<body class="blog-page">
+    <div class="wrapper">
+    {% include header.html %}
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-  </header>
+        <!-- ******BLOG****** --> 
+        <div class="blog container">            
+            <div class="row">
+                <div id="blog-entry" class="blog-entry section col-md-8 col-sm-8 col-xs-12">                 
+                    <article class="post">
+                        <h2 class="title">{{ page.title }}</h2>
+                        <div class="meta">
+                            <ul class="meta-list list-inline">                                       
+                                <li class="post-time post_date date updated">{{ page.date | date: "%-d %B %Y" }}</li>
+                                <li class="post-author"> by <a href="#">{{ page.author }}</a></li>
+                            </ul><!--//meta-list-->                             
+                        </div><!--meta-->
+                        <div class="post-thumb">
+                            <img class="img-responsive" src="/assets/images/posts/post-1.jpg" alt="" />
+                        </div><!--//post-thumb-->
+						<div class="content">
+							{{ content }}
+						</div>
 
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-  </div>
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
 
-</article>
+                        <nav class="post-nav">
+                                <span class="nav-previous"><a href="#" rel="prev"><i class="fa fa-long-arrow-left"></i>Previous</a></span>
+                                <span class="nav-next"><a href="#" rel="next">Next<i class="fa fa-long-arrow-right"></i></a></span>
+                        </nav><!--//post-nav-->
+
+                        <div id="comment-area" class="comment-area">
+                                <!--//DISQUS script starts-->
+                                <div id="disqus_thread"></div>
+                                <script type="text/javascript">
+                                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                                    var disqus_shortname = ''; // required: replace example with your forum shortname
+                            
+                                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                                    (function() {
+                                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                                <!--//DISQUS script ends-->
+                        </div><!--//comment-area-->
+                    </article><!--//post-->                                      
+                </div><!--//blog-entry-->
+
+            {% include blog.sidebar.html %}
+            </div><!--//row-->
+        </div><!--//blog-->
+
+    </div><!--//wrapper-->
+    {% include footer.html %}
+    {% include config.style.html %}
+    {% include footer.javascript.html %}
+    {% include modal/login.html %}
+    {% include modal/signup.html %}
+  </body>
+</html>

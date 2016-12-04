@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]--> 
+{% include head.html %}
+<body class="blog-page">
+
+    <div class="wrapper">
+    {% include header.html %}
+
+        <!-- ******BLOG LIST****** --> 
+        <div class="blog container">
+            <h2 class="title">Blog</h2>
+            <div class="row">
+                <div id="blog-list" class="blog-list section col-md-8 col-sm-8 col-xs-12">
+
+                {{ content }}
+                    
+
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul><!--//pagination-->
+
+                </div><!--//blog-list-->                
+            {% include blog.sidebar.html %}
+            </div><!--//row-->
+        </div><!--//blog-->
+
+    </div><!--//wrapper-->
+
+    {% include footer.html %}
+
+    {% include config.style.html %}
+
+    {% include footer.javascript.html %}
+
+    {% include modal/login.html %}
+    {% include modal/signup.html %}
+
+  </body>
+
+</html>

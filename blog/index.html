@@ -1,0 +1,25 @@
+---
+layout: blog
+title: Blog
+permalink: /blog/
+---
+{% for post in site.posts %}
+<article class="post">
+    <div class="post-thumb">
+        <img class="img-responsive" src="/assets/images/posts/post-1.jpg" alt="" />
+    </div><!--//post-thumb-->
+    <div class="content">
+        <h3 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <div class="meta">
+            <ul class="meta-list list-inline">                                       
+            	<li class="post-time post_date date updated">{{ post.date | date: "%-d %B %Y" }}</li>
+            	<li class="post-author"> by <a href="#">{{ post.author }}</a></li>
+        	</ul><!--//meta-list-->                           	
+        </div><!--meta-->
+        <div class="post-entry">
+        <p>{{ post.excerpt }}</p>
+        <a class="read-more" href="{{ post.url }}">Read more <i class="fa fa-long-arrow-right"></i></a>
+        </div>
+    </div>
+</article><!--//post-->
+{% endfor %}

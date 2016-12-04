@@ -1,14 +1,26 @@
----
-layout: default
----
-<article class="post">
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]--> 
+{% include head.html %}
+<body class="contact-page">
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-  </header>
+    <div class="wrapper">
+    {% include header.html %}
 
-  <div class="post-content">
     {{ content }}
-  </div>
 
-</article>
+    </div><!--//wrapper-->
+
+    {% include footer.html %}
+
+    {% include config.style.html %}
+
+    {% include footer.javascript.html %}
+
+    {% include modal/login.html %}
+    {% include modal/signup.html %}
+
+  </body>
+
+</html>
