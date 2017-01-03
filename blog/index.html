@@ -5,9 +5,11 @@ permalink: /blog/
 ---
 {% for post in site.posts %}
 <article class="post">
+{% if post.image %}
     <div class="post-thumb">
-        <img class="img-responsive" src="/assets/images/posts/post-1.jpg" alt="" />
+        <img class="img-responsive" src="{{ post.image }}" alt="" />
     </div><!--//post-thumb-->
+{% endif %}
     <div class="content">
         <h3 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
         <div class="meta">
